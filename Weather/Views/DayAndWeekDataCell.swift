@@ -60,9 +60,9 @@ extension DayAndWeekDataCell: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     switch indexPath.row {
     case 0:
-      return CGFloat(weekForecast.count * 60)
+      return CGFloat(360)
     case 1:
-      return CGFloat(dayConditionParams.count * 80) + 60
+      return CGFloat(3 * 80) + 60
     default:
       return 0
     }

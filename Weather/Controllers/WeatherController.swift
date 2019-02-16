@@ -14,11 +14,11 @@ enum DateInfo: String {
 }
 
 class WeatherController {
-  weak var weatherView: WeatherView?
+  weak var weatherView: WeatherPresenter?
   let weatherService: WeatherService = WeatherServiceImpl()
   let coreDataTransport: CoreDataTransport = CoreDataTransportImpl()
   
-  init(view: WeatherView) {
+  init(view: WeatherPresenter) {
     self.weatherView = view
   }
   

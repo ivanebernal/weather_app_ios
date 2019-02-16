@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weather/ViewControllers/WeatherViewController.swift"
-            timestampString = "571003297.388315"
+            timestampString = "571011035.552314"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "configureHourForecast(forecast:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -68,13 +68,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Weather/Cells/WeatherHeader.swift"
-            timestampString = "571003297.389097"
+            timestampString = "571007251.278569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "adjustToScroll(dy:possibleOffset:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/ViewControllers/WeatherViewController.swift"
+            timestampString = "571360345.556307"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

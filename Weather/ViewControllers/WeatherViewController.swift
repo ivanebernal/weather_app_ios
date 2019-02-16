@@ -10,24 +10,22 @@ import UIKit
 import CoreLocation
 import CoreData
 
-protocol WeatherView: class {
+protocol WeatherPresenter: class {
   func configureMainViews(data: MainWeatherData)
   func configureHourForecast(forecast: Forecast5Days)
   func configureDayConditions(conditions: [((String, String), (String, String))])
   func setWeekForecast(forecast: [WeatherCondition])
 }
+
 class WeatherViewController: UIViewController {
   
   //MARK: - Outlets
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var header: WeatherHeader!
+  @IBOutlet weak var header: WeatherHeaderView!
   
   //MARK: - Properties
-  let delegate = UIApplication.shared.delegate as! AppDelegate
-  let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
   var locationManager: CLLocationManager = CLLocationManager()
   var controller: WeatherController?
-  var mainViewOriginalYPosition: CGFloat = 0
   var forecast: Forecast5Days? {
     didSet {
       tableView.reloadData()
@@ -47,13 +45,18 @@ class WeatherViewController: UIViewController {
   //MARK: - UIViewController methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    Bundle.main.loadNibNamed(WeatherHeader.name, owner: self, options: nil)
+    Bundle.main.loadNibNamed(WeatherHeaderView.name, owner: self, options: nil)
     configureTableView()
     controller = WeatherController(view: self)
   }
   
   override func viewWillAppear(_ animated: Bool) {
     checkForLocationServices()
+  }
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    sizeHeaderToFit()
   }
   
   //MARK: - Private Methods
@@ -75,9 +78,21 @@ class WeatherViewController: UIViewController {
     tableView.register(UINib(nibName: HourForecasts.name, bundle: nil), forCellReuseIdentifier: HourForecasts.identifier)
     tableView.register(UINib(nibName: DayAndWeekDataCell.name, bundle: nil), forCellReuseIdentifier: DayAndWeekDataCell.identifier)
     tableView.tableHeaderView = header
+    header.setNeedsLayout()
+    header.layoutIfNeeded()
     tableView.dataSource = self
     tableView.delegate = self
     
+  }
+  
+  fileprivate func sizeHeaderToFit() {
+    header.setNeedsLayout()
+    header.layoutIfNeeded()
+    let height = header.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+    var frame = header.frame
+    frame.size.height = height
+    header.frame = frame
+    tableView.tableHeaderView = header
   }
 }
 
@@ -101,7 +116,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
   }
 }
 
-extension WeatherViewController: WeatherView {
+extension WeatherViewController: WeatherPresenter {
   func configureMainViews(data: MainWeatherData) {
     OperationQueue.main.addOperation {
       self.header.setUpViews(data: data)
@@ -163,7 +178,7 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    if scrollView.contentSize.height > view.frame.height {
+    if scrollView.contentSize.height > view.frame.height && UIDevice.current.orientation.isPortrait {
       header.adjustToScroll(dy: scrollView.contentOffset.y, possibleOffset: scrollView.frame.height - view.bounds.height)
     }
   }

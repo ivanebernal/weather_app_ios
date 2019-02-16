@@ -165,7 +165,7 @@
 				23FCAFDE22037EC8001272C5 /* Controllers */,
 				23FCAFD02202B58F001272C5 /* Async */,
 				23FCAFCF2202B571001272C5 /* Networking */,
-				23FCAFC0220254C8001272C5 /* Cells */,
+				23FCAFC0220254C8001272C5 /* Views */,
 				23FCAFAF22022963001272C5 /* ViewControllers */,
 				23657EA32200EACC00A90A43 /* Model */,
 				23E8A14A2200E44600D636B8 /* AppDelegate.swift */,
@@ -190,7 +190,7 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		23FCAFC0220254C8001272C5 /* Cells */ = {
+		23FCAFC0220254C8001272C5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				23FCAFC1220254DF001272C5 /* HourForecastCell.xib */,
@@ -210,7 +210,7 @@
 				231D59EE22050A7800F1F8DD /* WeekConditions.xib */,
 				231D59ED22050A7800F1F8DD /* WeekConditions.swift */,
 			);
-			path = Cells;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		23FCAFCF2202B571001272C5 /* Networking */ = {
